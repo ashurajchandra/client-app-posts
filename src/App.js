@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer} from 'react';
+import Posts from './Posts/Posts'
+import './App.css'
+import {PostContext} from './Context/PostContext';
+import {postInitialState,postReducer}from './Context/PostReducer';
+
+
+// import {PostContext} from './Context/PostContext';
+// import {postInitialState,postReducer} from './Context/PostReducer'
 
 function App() {
+  const [ PostState, PostDispatch] = useReducer(postReducer, postInitialState)
   return (
+    <PostContext.Provider value={{PostState, PostDispatch}}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {/* <h1>App</h1> */}
+ 
+     <Posts/>
+     
     </div>
+    </PostContext.Provider>
   );
 }
 
